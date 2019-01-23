@@ -32,6 +32,9 @@ export const constantRouterMap = [
     redirect: '/dashboard',
     name: 'Dashboard',
     hidden: true,
+    meta: {
+      title: '仪表盘'
+    },
     children: [{
       path: 'dashboard',
       component: () => import('@/views/dashboard/index')
@@ -141,7 +144,38 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path: 'component',
+    component: Layout,
+    name: 'component',
+    meta: { title: '组件', icon: 'example' },
+    children: [
+      {
+        path: '/component/modules',
+        name: 'modules',
+        component: () => import('@/views/modules/modules.vue'),
+        meta: { title: '豆腐块', icon: 'link' }
+      },
+      {
+        path: '/component/diytab',
+        name: 'diytab',
+        component: () => import('@/views/modules/diytab.vue'),
+        meta: { title: 'Tab 标签页', icon: 'link' }
+      },
+      {
+        path: '/component/waterfall',
+        name: 'waterfall',
+        component: () => import('@/views/modules/waterfall.vue'),
+        meta: { title: '瀑布流', icon: 'link' }
+      },
+      {
+        path: '/component/detailcard.',
+        name: 'detailcard',
+        component: () => import('@/views/modules/detailcard.vue'),
+        meta: { title: '细节卡片', icon: 'link' }
+      }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 

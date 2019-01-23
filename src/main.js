@@ -15,8 +15,26 @@ import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-Vue.use(ElementUI, { locale })
+import { MdCard, MdButton, MdRipple, MdIcon } from 'vue-material/dist/components'
+import 'vue-material/dist/vue-material.min.css'
 
+import brands from '@fortawesome/fontawesome-free-brands'
+import solid from '@fortawesome/fontawesome-free-solid'
+import regular from '@fortawesome/fontawesome-free-regular'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(solid)
+library.add(regular)
+library.add(brands)
+
+Vue.use(ElementUI, { locale })
+Vue.use(MdCard)
+Vue.use(MdButton)
+Vue.use(MdRipple)
+Vue.use(MdIcon)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 new Vue({
