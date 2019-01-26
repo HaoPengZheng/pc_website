@@ -9,13 +9,23 @@
       </el-row>
       <el-row :gutter="20">
         <water-fall :count="5" :data-option="{item:3}" width="1080"/>
-
       </el-row>
       <el-row>
         <p>水平滚动</p>
       </el-row>
       <el-row :gutter="20">
         <water-fall :vertical="false" :count="5" :data-option="{item:8}" width="1080"/>
+      </el-row>
+      <el-row>
+        <p>通过url映射数据</p>
+      </el-row>
+      <el-row :gutter="20">
+        <water-fall
+          :count="5"
+          :data-option="{item:8}"
+          :url-option="urlOption"
+          url="http://www.00800.com.cn/cnhs/wqproject/index.php?app=public&mod=PCNew&act=getCompanyIndexFeeds&start=0"
+          width="1080"/>
       </el-row>
       <el-row>
         <h3>
@@ -61,6 +71,10 @@ export default {
   },
   data() {
     return {
+      urlOption: {
+        method: 'Get'
+
+      },
       attributeData: [
         {
           param: 'url',

@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
-
+import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
@@ -28,6 +28,7 @@ library.add(solid)
 library.add(regular)
 library.add(brands)
 
+Vue.prototype.$axios = axios
 Vue.use(ElementUI, { locale })
 Vue.use(MdCard)
 Vue.use(MdButton)

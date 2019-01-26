@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 垂直形式 -->
     <div
       v-loading="loading"
       v-if="vertical"
@@ -53,6 +54,8 @@
         </md-button>
       </div>
     </div>
+
+    <!-- 水平形式 -->
     <div
       v-loading="loading"
       v-if="!vertical"
@@ -69,18 +72,15 @@
         :class="classObject"
       >
         <md-card>
-
           <md-card-media>
             <img
               :src="item.attach"
               alt="People"
             >
           </md-card-media>
-
           <md-card-content>
             <code-render>{{ item.feed_content }}</code-render>
           </md-card-content>
-
           <md-card-actions>
             <div class="card-footer">
               <span class="user">{{ item.uname }}</span>
@@ -89,6 +89,9 @@
           </md-card-actions>
         </md-card>
       </div>
+
+
+      <!-- 加载更多 -->
       <div class="addmore">
         <md-button
           v-show="isComplete"
@@ -258,15 +261,34 @@ export default {
     isComplete() {
       return this.flag === this.alldata.length
     }
-
   },
   created() {
     this.init()
   },
   methods: {
     init() {
+      /*
+        初始化轮播图
+        判断是否为url模式=>{
+
+          urlOption:{
+            method: 'GET',
+            param: '参数',
+            map:{
+              attach:''//图片
+              feed_content:''内容
+              uname: '' //发布人名
+              publish_time:'' 时间
+            }
+          }
+          url模式=> 拉取数据
+
+          数据模式=> 导入所有数据
+        }
+      */
       if (this.url !== '') {
         this.isUrlData = true
+        this.initUrlMode()
       }
       if (this.data.length !== 0 && this.url === '') {
         this.isUrlData = false
@@ -277,6 +299,15 @@ export default {
       } else {
         this.addFlag()
       }
+    },
+    initUrlMode() {
+      console.log('url-mode')
+      this.$axios({
+        methods: 'get',
+        url: this.url
+      }).then(response => {
+        console.log(response)
+      })
     },
     addFlag() {
       this.flag = this.flag + this.dataOption.item > this.alldata.length ? this.alldata.length : this.flag + this.dataOption.item
